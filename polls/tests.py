@@ -14,8 +14,7 @@ class QuestionModelTests(TestCase):
 
     def test_was_published_recently_with_future_question(self):
         """
-        was_published_recently() returns False for questions whose pub_date
-        is in the future.
+        was_published_recently() 메서드의 pub_date가 과거가 아닐경우에 대해 False를 반환합니다.
         """
         time = timezone.now() + datetime.timedelta(days=30)
         future_question = Question(pub_date=time)
@@ -23,8 +22,7 @@ class QuestionModelTests(TestCase):
 
     def test_was_published_recently_with_old_question(self):
         """
-        was_published_recently() returns False for questions whose pub_date
-        is older than 1 day.
+        was_published_recently() 메서드의 pub_date가 1일보다 오래된 질문일 경우에 대해 False를 반환합니다.
         """
         time = timezone.now() - datetime.timedelta(days=1, seconds=1)
         old_question = Question(pub_date=time)
@@ -32,8 +30,7 @@ class QuestionModelTests(TestCase):
         
     def test_was_published_recently_with_recent_question(self):
         """
-        was_published_recently() returns True for questions whose pub_date
-        is within the last day.
+        was_published_recently() 메서드의 pub_date가 마지막 날 이내의 질문에 대해 True를 반환합니다.
         """
         time = timezone.now() - datetime.timedelta(hours=23, minutes=59, seconds=59)
         recent_question = Question(pub_date=time)
